@@ -1,9 +1,9 @@
-package src.main.java.com.sa.development.eManager.domain.Service;
+package src.main.java.com.sa.development.eManager.domain.person;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import src.main.java.com.sa.development.eManager.domain.Enums.PersonType;
-import src.main.java.com.sa.development.eManager.domain.Enums.Profile;
+import src.main.java.com.sa.development.eManager.domain.enums.PersonType;
+import src.main.java.com.sa.development.eManager.domain.enums.Profile;
 
 import java.io.Serial;
 import java.io.Serializable;

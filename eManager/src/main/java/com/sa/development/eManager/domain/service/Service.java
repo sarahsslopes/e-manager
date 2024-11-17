@@ -1,4 +1,4 @@
-package src.main.java.com.sa.development.eManager.domain.Service;
+package src.main.java.com.sa.development.eManager.domain.service;
 
 import lombok.Data;
 import main.java.com.sa.development.eManager.domain.InvalidInput;

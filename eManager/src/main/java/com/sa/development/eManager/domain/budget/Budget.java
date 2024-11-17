@@ -1,8 +1,11 @@
-package src.main.java.com.sa.development.eManager.domain.Service;
+package src.main.java.com.sa.development.eManager.domain.budget;
 
 import lombok.Data;
-import src.main.java.com.sa.development.eManager.domain.Enums.BudgetStatus;
-import src.main.java.com.sa.development.eManager.domain.Enums.Priority;
+import src.main.java.com.sa.development.eManager.domain.enums.BudgetStatus;
+import src.main.java.com.sa.development.eManager.domain.enums.Priority;
+import src.main.java.com.sa.development.eManager.domain.customer.Customer;
+import src.main.java.com.sa.development.eManager.domain.employee.Employee;
+import src.main.java.com.sa.development.eManager.domain.service.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,8 +17,6 @@ public class Budget {
     private String code;
     private Customer customer;
     private Employee employee;
-    private BudgetStatus status;
-    private Priority priority;
     private Service[] service;
     private BigDecimal increase;
     private BigDecimal discount;
@@ -30,9 +31,6 @@ public class Budget {
                   BigDecimal increase,
                   BigDecimal discount,
                   Service[] service,
-                  Priority priority,
-                  BudgetStatus status,
-                  LocalDate expirationAt,
                   String code,
                   Integer createdBy
     ) {
@@ -41,8 +39,6 @@ public class Budget {
         this.increase = increase;
         this.discount = discount;
         this.service = service;
-        this.priority = priority;
-        this.status = status;
         this.createdAt = LocalDate.now();
         this.code = code;
         this.createdBy = createdBy;
