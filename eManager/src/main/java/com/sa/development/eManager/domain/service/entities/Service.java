@@ -2,33 +2,59 @@ package com.sa.development.eManager.domain.service.entities;
 
 import com.sa.development.eManager.domain.AbstractEntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.domain.budget.entities.Budget;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.domain.service.entities.Service.NAME_TABLE;
 
 @Data
+@Entity
+@Table(name = NAME_TABLE)
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Service extends AbstractEntityBase<Integer> {
+public class Service extends AbstractEntityBase<String> {
 
-    private int id;
+    public static final String NAME_TABLE = "service";
+
+    @Id
+    private String id;
+
+    @Column(unique = true, nullable = false)
     private Integer code;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private BigDecimal price;
 
+    @OneToMany
+    @JoinColumn(name = "service")
+    private List<Budget> budgets;
+
     public Service(
-            int id,
             BigDecimal price,
             String name,
             Integer code
     ) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.price = price;
         this.name = name;
         this.code = code;
         this.validate();
+    }
+
+    @Override
+    public String setId() {
+        return generateUUID();
     }
 
     @Override

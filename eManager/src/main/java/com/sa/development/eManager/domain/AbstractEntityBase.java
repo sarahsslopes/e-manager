@@ -9,6 +9,8 @@ public abstract class AbstractEntityBase<ID extends Serializable> implements Ser
     @Serial
     private static final long serialVersionUID = -1745838616630218107L;
 
+    public abstract ID setId();
+
     public abstract ID getId();
 
     public static String generateUUID() {

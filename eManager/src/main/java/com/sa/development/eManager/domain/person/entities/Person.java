@@ -1,48 +1,67 @@
 package com.sa.development.eManager.domain.person.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sa.development.eManager.domain.AbstractEntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.person.entities.enums.PersonType;
-import com.sa.development.eManager.domain.person.entities.enums.Profile;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.domain.person.entities.Person.NAME_TABLE;
 
 @Data
+@Entity
+@Table(name = NAME_TABLE)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Person extends AbstractEntityBase<Integer> {
+public class Person extends AbstractEntityBase<String> {
 
-    private int id;
+    public static final String NAME_TABLE = "person";
+
+    @Id
+    private String id;
+
+    @Column(unique = true, nullable = false)
     private String name;
+
+    @Column
     private String phoneNumber;
+
+    @Column(unique = true)
     private String email;
+
+    @Enumerated(EnumType.STRING)
     private PersonType personType;
-    private Set<Profile> profiles;
-    private LocalDate createdAt;
+
+   // private Set<Profile> profiles;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date createdAt;
 
     public Person(
-            int id,
             String name,
             String phoneNumber,
             String email,
             PersonType personType
     ) {
-        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.personType = personType;
-        this.profiles = new HashSet<>();
-        this.createdAt = LocalDate.now();
+  //      this.profiles = new HashSet<>();
+        this.createdAt = new Date();
     }
 
+
+    @Override
+    public String setId() {
+        return generateUUID();
+    }
 
     @Override
     public void validate() {

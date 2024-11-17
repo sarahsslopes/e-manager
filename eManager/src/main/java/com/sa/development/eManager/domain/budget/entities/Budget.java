@@ -1,37 +1,70 @@
 package com.sa.development.eManager.domain.budget.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sa.development.eManager.domain.AbstractEntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.customer.entities.Customer;
 import com.sa.development.eManager.domain.employee.entities.Employee;
 import com.sa.development.eManager.domain.service.entities.Service;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.domain.budget.entities.Budget.NAME_TABLE;
 
 @Data
+@Entity
+@Table(name = NAME_TABLE)
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Budget extends AbstractEntityBase<Integer> {
+public class Budget extends AbstractEntityBase<String> {
 
-    private int id;
+    public static final String NAME_TABLE = "budget";
+
+    @Id
+    private String id;
+
+    @Column
     private String code;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
-    private Service[] service;
+
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private Service service;
+
+    @Column
     private BigDecimal increase;
+
+    @Column
     private BigDecimal discount;
+
+    @Column
     private String notes;
 
+    @Column
     private Integer createdBy;
-    private LocalDate createdAt;
-    private LocalDate expirationAt;
+
+    @JsonFormat(pattern = "dd/MM/YY")
+    @Column
+    private Date createdAt;
+
+    @JsonFormat(pattern = "dd/MM/YY")
+    @Column
+    private Date expirationAt;
 
     public Budget(
-            int id,
             String notes,
             BigDecimal increase,
             BigDecimal discount,
@@ -39,14 +72,18 @@ public class Budget extends AbstractEntityBase<Integer> {
             String code,
             Integer createdBy
     ) {
-        this.id = id;
         this.notes = notes;
         this.increase = increase;
         this.discount = discount;
-        this.service = service;
-        this.createdAt = LocalDate.now();
+  //      this.service = service;
+        this.createdAt = new Date();
         this.code = code;
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String setId() {
+        return generateUUID();
     }
 
     @Override
