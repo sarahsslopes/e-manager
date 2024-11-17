@@ -1,19 +1,20 @@
-package src.main.java.com.sa.development.eManager.domain.person;
+package src.main.java.com.sa.development.eManager.domain.person.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
-import src.main.java.com.sa.development.eManager.domain.enums.PersonType;
-import src.main.java.com.sa.development.eManager.domain.enums.Profile;
+import src.main.java.com.sa.development.eManager.domain.__shared.InvalidInputException;
+import src.main.java.com.sa.development.eManager.domain.person.entities.enums.PersonType;
+import src.main.java.com.sa.development.eManager.domain.person.entities.enums.Profile;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Person extends AbstractEntityBase<Integer> {
 
     private int id;
@@ -42,7 +43,7 @@ public class Person extends AbstractEntityBase<Integer> {
 
     private void validate() {
         if (name == null || name.trim().isEmpty()) {
-            throw new main.java.com.sa.development.eManager.domain.InvalidInput("Person name must be at least 1 character long.");
+            throw new InvalidInputException("Person name must be at least 1 character long.");
         }
     }
 }

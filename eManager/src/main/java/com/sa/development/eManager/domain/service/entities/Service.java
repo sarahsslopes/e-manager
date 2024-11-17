@@ -1,9 +1,9 @@
-package src.main.java.com.sa.development.eManager.domain.service;
+package src.main.java.com.sa.development.eManager.domain.service.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import main.java.com.sa.development.eManager.domain.InvalidInput;
 import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
+import src.main.java.com.sa.development.eManager.domain.__shared.InvalidInputException;
 
 import java.math.BigDecimal;
 
@@ -31,15 +31,15 @@ public class Service extends AbstractEntityBase<Integer> {
 
     private void validate() {
         if (name == null || name.trim().isEmpty()) {
-            throw new InvalidInput("Service name must be at least 1 character long.");
+            throw new InvalidInputException("Service name must be at least 1 character long.");
         }
 
         if (code == null || code.trim().isEmpty()) {
-            throw new InvalidInput("Code must be at least 1 character long.");
+            throw new InvalidInputException("Code must be at least 1 character long.");
         }
 
         if (price == null || price.equals(BigDecimal.ZERO) || price.compareTo(BigDecimal.ZERO) < 0) {
-            throw new InvalidInput("Price value must be at greater than zero.");
+            throw new InvalidInputException("Price value must be at greater than zero.");
         }
     }
 }

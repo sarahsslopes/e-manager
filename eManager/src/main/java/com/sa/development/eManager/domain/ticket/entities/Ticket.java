@@ -1,15 +1,14 @@
-package src.main.java.com.sa.development.eManager.domain.ticket;
+package src.main.java.com.sa.development.eManager.domain.ticket.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
-import src.main.java.com.sa.development.eManager.domain.customer.Customer;
-import src.main.java.com.sa.development.eManager.domain.enums.BudgetStatus;
-import src.main.java.com.sa.development.eManager.domain.enums.Priority;
-import src.main.java.com.sa.development.eManager.domain.employee.Employee;
+import src.main.java.com.sa.development.eManager.domain.customer.entities.Customer;
+import src.main.java.com.sa.development.eManager.domain.employee.entities.Employee;
+import src.main.java.com.sa.development.eManager.domain.budget.entities.enums.BudgetStatus;
+import src.main.java.com.sa.development.eManager.domain.ticket.entities.enums.TicketPriority;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
@@ -23,7 +22,7 @@ public class Ticket extends AbstractEntityBase<Integer> {
     private Customer customer;
     private Employee employee;
     private BudgetStatus status;
-    private Priority priority;
+    private TicketPriority priority;
     private String notes;
 
     private LocalDate createdAt;
@@ -33,7 +32,7 @@ public class Ticket extends AbstractEntityBase<Integer> {
             int id,
             LocalDate finishedAt,
             String notes,
-            Priority priority,
+            TicketPriority priority,
             BudgetStatus status,
             Employee employee,
             Customer customer,
