@@ -1,10 +1,19 @@
-package src.main.java.com.sa.development.eManager.domain;
+package com.sa.development.eManager.domain;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.UUID;
 
 public abstract class AbstractEntityBase<ID extends Serializable> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1745838616630218107L;
+
+    public abstract ID getId();
+
+    public static String generateUUID() {
+        return UUID.randomUUID().toString();
+    }
+
+    public abstract void validate();
 }

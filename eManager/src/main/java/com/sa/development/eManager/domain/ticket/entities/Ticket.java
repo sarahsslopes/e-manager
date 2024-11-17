@@ -1,15 +1,18 @@
-package src.main.java.com.sa.development.eManager.domain.ticket.entities;
+package com.sa.development.eManager.domain.ticket.entities;
 
+import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.domain.budget.entities.enums.BudgetStatus;
+import com.sa.development.eManager.domain.customer.entities.Customer;
+import com.sa.development.eManager.domain.employee.entities.Employee;
+import com.sa.development.eManager.domain.ticket.entities.enums.TicketPriority;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
-import src.main.java.com.sa.development.eManager.domain.customer.entities.Customer;
-import src.main.java.com.sa.development.eManager.domain.employee.entities.Employee;
-import src.main.java.com.sa.development.eManager.domain.budget.entities.enums.BudgetStatus;
-import src.main.java.com.sa.development.eManager.domain.ticket.entities.enums.TicketPriority;
 
 import java.time.LocalDate;
+
+import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
 
 @Data
 @NoArgsConstructor
@@ -30,24 +33,35 @@ public class Ticket extends AbstractEntityBase<Integer> {
 
     public Ticket(
             int id,
-            LocalDate finishedAt,
-            String notes,
-            TicketPriority priority,
-            BudgetStatus status,
-            Employee employee,
-            Customer customer,
+            String title,
             String code,
-            String title
+            String notes,
+            BudgetStatus status,
+            TicketPriority priority,
+            LocalDate finishedAt,
+            Employee employee,
+            Customer customer
     ) {
         this.id = id;
-        this.finishedAt = finishedAt;
-        this.createdAt = LocalDate.now();
+        this.title = title;
+        this.code = code;
         this.notes = notes;
-        this.priority = priority;
         this.status = status;
+        this.priority = priority;
+        this.createdAt = LocalDate.now();
+        this.finishedAt = finishedAt;
         this.employee = employee;
         this.customer = customer;
-        this.code = code;
-        this.title = title;
+    }
+
+    @Override
+    public void validate() {
+        if (!isValid(title)) {
+            throw new InvalidInputException("Title must be be at least 1 character long.");
+        }
+
+        if(!isValid(code)) {
+            throw new InvalidInputException("Code cannot be null or empty.");
+        }
     }
 }

@@ -1,16 +1,18 @@
-package src.main.java.com.sa.development.eManager.domain.person.entities;
+package com.sa.development.eManager.domain.person.entities;
 
+import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.domain.person.entities.enums.PersonType;
+import com.sa.development.eManager.domain.person.entities.enums.Profile;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
-import src.main.java.com.sa.development.eManager.domain.__shared.InvalidInputException;
-import src.main.java.com.sa.development.eManager.domain.person.entities.enums.PersonType;
-import src.main.java.com.sa.development.eManager.domain.person.entities.enums.Profile;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class Person extends AbstractEntityBase<Integer> {
 
     private int id;
     private String name;
-    private String telephone;
+    private String phoneNumber;
     private String email;
     private PersonType personType;
     private Set<Profile> profiles;
@@ -28,22 +30,28 @@ public class Person extends AbstractEntityBase<Integer> {
     public Person(
             int id,
             String name,
-            String telephone,
+            String phoneNumber,
             String email,
             PersonType personType
     ) {
         this.id = id;
         this.name = name;
-        this.telephone = telephone;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.personType = personType;
         this.profiles = new HashSet<>();
         this.createdAt = LocalDate.now();
     }
 
-    private void validate() {
-        if (name == null || name.trim().isEmpty()) {
+
+    @Override
+    public void validate() {
+        if (!isValid(name)) {
             throw new InvalidInputException("Person name must be at least 1 character long.");
+        }
+
+        if (!isValid(phoneNumber)) {
+            throw new InvalidInputException("Phone number must be at least 1 character long.");
         }
     }
 }

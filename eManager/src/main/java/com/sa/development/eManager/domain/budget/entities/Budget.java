@@ -1,14 +1,18 @@
-package src.main.java.com.sa.development.eManager.domain.budget.entities;
+package com.sa.development.eManager.domain.budget.entities;
 
+import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.domain.customer.entities.Customer;
+import com.sa.development.eManager.domain.employee.entities.Employee;
+import com.sa.development.eManager.domain.service.entities.Service;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
-import src.main.java.com.sa.development.eManager.domain.customer.entities.Customer;
-import src.main.java.com.sa.development.eManager.domain.employee.entities.Employee;
-import src.main.java.com.sa.development.eManager.domain.service.entities.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Budget extends AbstractEntityBase<Integer> {
@@ -26,13 +30,14 @@ public class Budget extends AbstractEntityBase<Integer> {
     private LocalDate createdAt;
     private LocalDate expirationAt;
 
-    public Budget(int id,
-                  String notes,
-                  BigDecimal increase,
-                  BigDecimal discount,
-                  Service[] service,
-                  String code,
-                  Integer createdBy
+    public Budget(
+            int id,
+            String notes,
+            BigDecimal increase,
+            BigDecimal discount,
+            Service[] service,
+            String code,
+            Integer createdBy
     ) {
         this.id = id;
         this.notes = notes;
@@ -42,5 +47,12 @@ public class Budget extends AbstractEntityBase<Integer> {
         this.createdAt = LocalDate.now();
         this.code = code;
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public void validate() {
+        if (!isValid(code)) {
+            throw new InvalidInputException("Code cannot be null or empty.");
+        }
     }
 }

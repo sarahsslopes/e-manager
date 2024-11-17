@@ -1,4 +1,4 @@
-package src.main.java.com.sa.development.eManager.domain.__shared;
+package com.sa.development.eManager.domain.__shared.exceptions;
 
 public class InvalidInputException extends RuntimeException {
 
