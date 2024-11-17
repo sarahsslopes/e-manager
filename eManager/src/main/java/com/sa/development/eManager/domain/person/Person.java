@@ -2,6 +2,7 @@ package src.main.java.com.sa.development.eManager.domain.person;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
 import src.main.java.com.sa.development.eManager.domain.enums.PersonType;
 import src.main.java.com.sa.development.eManager.domain.enums.Profile;
 
@@ -13,10 +14,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class Person implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Person extends AbstractEntityBase<Integer> {
 
     private int id;
     private String name;

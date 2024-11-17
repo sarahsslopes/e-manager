@@ -1,12 +1,15 @@
 package src.main.java.com.sa.development.eManager.domain.service;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import main.java.com.sa.development.eManager.domain.InvalidInput;
+import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
 
 import java.math.BigDecimal;
 
 @Data
-public class Service {
+@EqualsAndHashCode(callSuper = true)
+public class Service extends AbstractEntityBase<Integer> {
 
     private int id;
     private String code;

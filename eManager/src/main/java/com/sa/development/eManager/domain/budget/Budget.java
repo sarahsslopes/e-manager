@@ -1,17 +1,17 @@
 package src.main.java.com.sa.development.eManager.domain.budget;
 
 import lombok.Data;
-import src.main.java.com.sa.development.eManager.domain.enums.BudgetStatus;
-import src.main.java.com.sa.development.eManager.domain.enums.Priority;
+import lombok.EqualsAndHashCode;
+import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
 import src.main.java.com.sa.development.eManager.domain.customer.Customer;
 import src.main.java.com.sa.development.eManager.domain.employee.Employee;
 import src.main.java.com.sa.development.eManager.domain.service.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 @Data
-public class Budget {
+@EqualsAndHashCode(callSuper = true)
+public class Budget extends AbstractEntityBase<Integer> {
 
     private int id;
     private String code;

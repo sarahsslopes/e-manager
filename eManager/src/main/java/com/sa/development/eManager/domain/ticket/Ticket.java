@@ -1,7 +1,9 @@
 package src.main.java.com.sa.development.eManager.domain.ticket;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import src.main.java.com.sa.development.eManager.domain.AbstractEntityBase;
 import src.main.java.com.sa.development.eManager.domain.customer.Customer;
 import src.main.java.com.sa.development.eManager.domain.enums.BudgetStatus;
 import src.main.java.com.sa.development.eManager.domain.enums.Priority;
@@ -12,7 +14,8 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-public class Ticket implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class Ticket extends AbstractEntityBase<Integer> {
 
     private int id;
     private String title;
