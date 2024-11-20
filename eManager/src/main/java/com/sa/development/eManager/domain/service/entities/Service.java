@@ -36,8 +36,7 @@ public class Service extends AbstractEntityBase<String> {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany
-    @JoinColumn(name = "service")
+    @OneToMany(mappedBy = "service")
     private List<Budget> budgets;
 
     public Service(
