@@ -1,11 +1,11 @@
 package com.sa.development.eManager.domain.ticket.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.EntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.budget.entities.enums.BudgetStatus;
-import com.sa.development.eManager.domain.customer.entities.Customer;
-import com.sa.development.eManager.domain.employee.entities.Employee;
+import com.sa.development.eManager.domain.customer.entities.CustomerEntity;
+import com.sa.development.eManager.domain.employee.entities.EmployeeEntity;
 import com.sa.development.eManager.domain.ticket.entities.enums.TicketPriority;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,14 +15,14 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
-import static com.sa.development.eManager.domain.ticket.entities.Ticket.NAME_TABLE;
+import static com.sa.development.eManager.domain.ticket.entities.TicketEntity.NAME_TABLE;
 
 @Data
 @Entity
 @Table(name = NAME_TABLE)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Ticket extends AbstractEntityBase<String> {
+public class TicketEntity extends EntityBase<String> {
 
     public static final String NAME_TABLE = "ticket";
 
@@ -37,11 +37,11 @@ public class Ticket extends AbstractEntityBase<String> {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private EmployeeEntity employee;
 
     @Enumerated(EnumType.STRING)
     private BudgetStatus status;
@@ -58,15 +58,15 @@ public class Ticket extends AbstractEntityBase<String> {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date finishedAt;
 
-    public Ticket(
+    public TicketEntity(
             String title,
             String code,
             String notes,
             BudgetStatus status,
             TicketPriority priority,
             Date finishedAt,
-            Employee employee,
-            Customer customer
+            EmployeeEntity employee,
+            CustomerEntity customer
     ) {
         this.title = title;
         this.code = code;

@@ -1,7 +1,7 @@
 package com.sa.development.eManager.domain.person.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.EntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.person.entities.enums.PersonType;
 import jakarta.persistence.*;
@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
-import static com.sa.development.eManager.domain.person.entities.Person.NAME_TABLE;
+import static com.sa.development.eManager.domain.person.entities.PersonEntity.NAME_TABLE;
 
 @Data
 @Entity
 @Table(name = NAME_TABLE)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Person extends AbstractEntityBase<String> {
+public class PersonEntity extends EntityBase<String> {
 
     public static final String NAME_TABLE = "person";
 
@@ -43,7 +43,7 @@ public class Person extends AbstractEntityBase<String> {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
 
-    public Person(
+    public PersonEntity(
             String name,
             String phoneNumber,
             String email,

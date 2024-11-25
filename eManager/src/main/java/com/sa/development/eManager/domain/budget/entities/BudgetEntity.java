@@ -1,11 +1,11 @@
 package com.sa.development.eManager.domain.budget.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.EntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
-import com.sa.development.eManager.domain.customer.entities.Customer;
-import com.sa.development.eManager.domain.employee.entities.Employee;
-import com.sa.development.eManager.domain.service.entities.Service;
+import com.sa.development.eManager.domain.customer.entities.CustomerEntity;
+import com.sa.development.eManager.domain.employee.entities.EmployeeEntity;
+import com.sa.development.eManager.domain.service.entities.ServiceEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,14 +15,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
-import static com.sa.development.eManager.domain.budget.entities.Budget.NAME_TABLE;
+import static com.sa.development.eManager.domain.budget.entities.BudgetEntity.NAME_TABLE;
 
 @Data
 @Entity
 @Table(name = NAME_TABLE)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Budget extends AbstractEntityBase<String> {
+public class BudgetEntity extends EntityBase<String> {
 
     public static final String NAME_TABLE = "budget";
 
@@ -34,15 +34,15 @@ public class Budget extends AbstractEntityBase<String> {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private EmployeeEntity employee;
 
     @ManyToOne
     @JoinColumn(name = "service_id")
-    private Service service;
+    private ServiceEntity service;
 
     @Column
     private BigDecimal increase;
@@ -64,18 +64,18 @@ public class Budget extends AbstractEntityBase<String> {
     @Column
     private Date expirationAt;
 
-    public Budget(
+    public BudgetEntity(
             String notes,
             BigDecimal increase,
             BigDecimal discount,
-            Service[] service,
+            ServiceEntity service,
             String code,
             Integer createdBy
     ) {
         this.notes = notes;
         this.increase = increase;
         this.discount = discount;
-  //      this.service = service;
+        this.service = service;
         this.createdAt = new Date();
         this.code = code;
         this.createdBy = createdBy;

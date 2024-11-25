@@ -1,8 +1,8 @@
 package com.sa.development.eManager.domain.service.entities;
 
-import com.sa.development.eManager.domain.AbstractEntityBase;
+import com.sa.development.eManager.domain.__shared.EntityBase;
 import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
-import com.sa.development.eManager.domain.budget.entities.Budget;
+import com.sa.development.eManager.domain.budget.entities.BudgetEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
-import static com.sa.development.eManager.domain.service.entities.Service.NAME_TABLE;
+import static com.sa.development.eManager.domain.service.entities.ServiceEntity.NAME_TABLE;
 
 @Data
 @Entity
 @Table(name = NAME_TABLE)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Service extends AbstractEntityBase<String> {
+public class ServiceEntity extends EntityBase<String> {
 
     public static final String NAME_TABLE = "service";
 
@@ -37,9 +37,9 @@ public class Service extends AbstractEntityBase<String> {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "service")
-    private List<Budget> budgets;
+    private List<BudgetEntity> budgets;
 
-    public Service(
+    public ServiceEntity(
             BigDecimal price,
             String name,
             Integer code
