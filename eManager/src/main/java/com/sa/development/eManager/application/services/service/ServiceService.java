@@ -2,6 +2,7 @@ package com.sa.development.eManager.application.services.service;
 
 import com.sa.development.eManager.application.dtos.service.ServiceDto;
 import com.sa.development.eManager.domain.__shared.ServiceBase;
+import com.sa.development.eManager.domain.__shared.exceptions.NotFoundException;
 import com.sa.development.eManager.domain.service.ServiceRepository;
 import com.sa.development.eManager.domain.service.entities.ServiceEntity;
 import com.sa.development.eManager.infraestructure.mappers.ServiceMapper;
@@ -23,7 +24,7 @@ public class ServiceService implements ServiceBase<ServiceDto, String> {
         ServiceEntity service = serviceRepository.findById(id).orElse(null);
 
         if (service == null) {
-            throw new RuntimeException("Service not found");
+            throw new NotFoundException("Service not found");
         }
 
         return serviceMapper.toDto(service);
@@ -43,7 +44,7 @@ public class ServiceService implements ServiceBase<ServiceDto, String> {
         List<ServiceEntity> services = serviceRepository.findAll();
 
         if (services.isEmpty()) {
-            throw new RuntimeException("Services not found");
+            throw new NotFoundException("Services not found");
         }
 
         return serviceMapper.toDtoList(services);
