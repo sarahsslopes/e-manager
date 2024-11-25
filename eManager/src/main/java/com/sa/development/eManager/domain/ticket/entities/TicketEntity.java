@@ -1,8 +1,8 @@
 package com.sa.development.eManager.domain.ticket.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sa.development.eManager.domain.__shared.EntityBase;
-import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.__shared.EntityBase;
+import com.sa.development.eManager.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.budget.entities.enums.BudgetStatus;
 import com.sa.development.eManager.domain.customer.entities.CustomerEntity;
 import com.sa.development.eManager.domain.employee.entities.EmployeeEntity;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.__shared.utils.ValidationUtils.isValid;
 import static com.sa.development.eManager.domain.ticket.entities.TicketEntity.NAME_TABLE;
 
 @Data

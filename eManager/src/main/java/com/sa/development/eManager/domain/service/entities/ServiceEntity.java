@@ -1,7 +1,7 @@
 package com.sa.development.eManager.domain.service.entities;
 
-import com.sa.development.eManager.domain.__shared.EntityBase;
-import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.__shared.EntityBase;
+import com.sa.development.eManager.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.budget.entities.BudgetEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.__shared.utils.ValidationUtils.isValid;
 import static com.sa.development.eManager.domain.service.entities.ServiceEntity.NAME_TABLE;
 
 @Data

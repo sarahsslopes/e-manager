@@ -1,4 +1,4 @@
-package com.sa.development.eManager.domain.__shared.utils;
+package com.sa.development.eManager.__shared.utils;
 
 import java.math.BigDecimal;
 

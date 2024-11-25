@@ -1,4 +1,4 @@
-package com.sa.development.eManager.domain.__shared.exceptions;
+package com.sa.development.eManager.__shared.exceptions;
 
 public abstract class ValidationException extends RuntimeException {
 

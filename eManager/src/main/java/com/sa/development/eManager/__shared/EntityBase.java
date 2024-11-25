@@ -1,4 +1,4 @@
-package com.sa.development.eManager.domain.__shared;
+package com.sa.development.eManager.__shared;
 
 import java.io.Serial;
 import java.io.Serializable;

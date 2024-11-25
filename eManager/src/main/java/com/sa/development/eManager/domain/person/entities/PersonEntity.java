@@ -1,8 +1,8 @@
 package com.sa.development.eManager.domain.person.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sa.development.eManager.domain.__shared.EntityBase;
-import com.sa.development.eManager.domain.__shared.exceptions.InvalidInputException;
+import com.sa.development.eManager.__shared.EntityBase;
+import com.sa.development.eManager.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.person.entities.enums.PersonType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.sa.development.eManager.domain.__shared.utils.ValidationUtils.isValid;
+import static com.sa.development.eManager.__shared.utils.ValidationUtils.isValid;
 import static com.sa.development.eManager.domain.person.entities.PersonEntity.NAME_TABLE;
 
 @Data

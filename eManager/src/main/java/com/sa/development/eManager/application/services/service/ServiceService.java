@@ -1,8 +1,8 @@
 package com.sa.development.eManager.application.services.service;
 
 import com.sa.development.eManager.application.dtos.service.ServiceDto;
-import com.sa.development.eManager.domain.__shared.ServiceBase;
-import com.sa.development.eManager.domain.__shared.exceptions.NotFoundException;
+import com.sa.development.eManager.__shared.ServiceBase;
+import com.sa.development.eManager.__shared.exceptions.NotFoundException;
 import com.sa.development.eManager.domain.service.ServiceRepository;
 import com.sa.development.eManager.domain.service.entities.ServiceEntity;
 import com.sa.development.eManager.infraestructure.mappers.ServiceMapper;

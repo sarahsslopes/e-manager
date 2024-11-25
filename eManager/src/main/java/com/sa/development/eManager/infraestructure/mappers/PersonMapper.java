@@ -1,7 +1,7 @@
 package com.sa.development.eManager.infraestructure.mappers;
 
 import com.sa.development.eManager.application.dtos.person.PersonDto;
-import com.sa.development.eManager.domain.__shared.MapperBase;
+import com.sa.development.eManager.__shared.MapperBase;
 import com.sa.development.eManager.domain.person.entities.PersonEntity;
 import org.mapstruct.factory.Mappers;
 
