@@ -1,8 +1,8 @@
 package com.sa.development.eManager.application.services.service;
 
-import com.sa.development.eManager.application.dtos.service.ServiceDto;
 import com.sa.development.eManager.__shared.ServiceBase;
 import com.sa.development.eManager.__shared.exceptions.NotFoundException;
+import com.sa.development.eManager.application.dtos.service.ServiceDto;
 import com.sa.development.eManager.domain.service.ServiceRepository;
 import com.sa.development.eManager.domain.service.entities.ServiceEntity;
 import com.sa.development.eManager.infraestructure.mappers.ServiceMapper;
@@ -21,22 +21,14 @@ public class ServiceService implements ServiceBase<ServiceDto, String> {
 
     @Override
     public ServiceDto findById(String id) {
-        ServiceEntity service = serviceRepository.findById(id).orElse(null);
-
-        if (service == null) {
-            throw new NotFoundException("Service not found");
-        }
-
-        return serviceMapper.toDto(service);
+        return serviceRepository.findById(id)
+                .map(serviceMapper::toDto)
+                .orElseThrow(() -> new NotFoundException("Service not found"));
     }
 
     @Override
     public void save(ServiceDto dto) {
-        ServiceEntity service = serviceMapper.toEntity(dto);
-
-        if (service != null) {
-            serviceRepository.save(service);
-        }
+        serviceRepository.save(serviceMapper.toEntity(dto));
     }
 
     @Override
@@ -44,7 +36,7 @@ public class ServiceService implements ServiceBase<ServiceDto, String> {
         List<ServiceEntity> services = serviceRepository.findAll();
 
         if (services.isEmpty()) {
-            throw new NotFoundException("Services not found");
+            throw new NotFoundException("No services found");
         }
 
         return serviceMapper.toDtoList(services);
@@ -52,6 +44,10 @@ public class ServiceService implements ServiceBase<ServiceDto, String> {
 
     @Override
     public void delete(String id) {
-        serviceRepository.findById(id).ifPresent(service -> serviceRepository.delete(service));
+        if (!serviceRepository.existsById(id)) {
+            throw new NotFoundException("Service not found");
+        }
+
+        serviceRepository.deleteById(id);
     }
 }
