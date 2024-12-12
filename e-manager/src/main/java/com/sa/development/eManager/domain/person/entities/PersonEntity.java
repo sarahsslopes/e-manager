@@ -5,11 +5,7 @@ import com.sa.development.eManager.__shared.EntityBase;
 import com.sa.development.eManager.__shared.exceptions.InvalidInputException;
 import com.sa.development.eManager.domain.person.entities.enums.PersonType;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 import java.util.UUID;
@@ -19,7 +15,6 @@ import static com.sa.development.eManager.domain.person.entities.PersonEntity.NA
 
 @Entity
 @Table(name = NAME_TABLE)
-@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class PersonEntity extends EntityBase<String> {
 

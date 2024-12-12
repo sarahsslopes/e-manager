@@ -14,7 +14,7 @@ public class TicketController {
     @Resource
     private TicketService ticketService;
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public TicketDto getPerson(@PathVariable String id) {
         return ticketService.findById(id);
     }

@@ -14,7 +14,7 @@ public class BudgetController {
     @Resource
     private BudgetService budgetService;
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public BudgetDto getBudget(@PathVariable String id) {
         return budgetService.findById(id);
     }

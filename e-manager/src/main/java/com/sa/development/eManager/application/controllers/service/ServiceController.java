@@ -14,7 +14,7 @@ public class ServiceController {
     @Resource
     private ServiceService serviceService;
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public ServiceDto getService(@PathVariable String id) {
         return serviceService.findById(id);
     }

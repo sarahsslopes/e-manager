@@ -1,9 +1,12 @@
 package com.sa.development.eManager.__shared;
 
+import jakarta.persistence.MappedSuperclass;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
+@MappedSuperclass
 public abstract class EntityBase<ID extends Serializable> implements Serializable {
 
     @Serial
