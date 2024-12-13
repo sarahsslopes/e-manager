@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequestMapping("/person")
 public class PersonController {
 
@@ -19,12 +19,12 @@ public class PersonController {
         return personService.findById(id);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<PersonDto> listServices() {
         return personService.findAll();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createService(@RequestBody PersonDto personDto) {
         personService.save(personDto);
     }

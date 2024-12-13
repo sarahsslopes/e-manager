@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequestMapping("/budget")
 public class BudgetController {
 
@@ -19,12 +19,12 @@ public class BudgetController {
         return budgetService.findById(id);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<BudgetDto> listBudgets() {
         return budgetService.findAll();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createBudget(@RequestBody BudgetDto budgetDto) {
         budgetService.save(budgetDto);
     }
