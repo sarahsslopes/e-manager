@@ -7,16 +7,15 @@ import com.sa.development.eManager.domain.ticket.entities.enums.TicketPriority;
 
 import java.util.Date;
 
-public class TicketDto {
-
-    private String id;
-    private String title;
-    private String code;
-    private CustomerEntity customer;
-    private EmployeeEntity employee;
-    private BudgetStatus status;
-    private TicketPriority priority;
-    private String notes;
-    private Date startedAt;
-    private Date finishedAt;
-}
+public record TicketDto(
+         String id,
+         String title,
+         String code,
+         CustomerEntity customer,
+         EmployeeEntity employee,
+         BudgetStatus status,
+         TicketPriority priority,
+         String notes,
+         Date startedAt,
+         Date finishedAt
+) {}
