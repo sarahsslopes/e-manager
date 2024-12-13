@@ -55,32 +55,33 @@ public class BudgetEntity extends EntityBase<String> {
     private String notes;
 
     @Column
-    private Integer createdBy;
-
-    @JsonFormat(pattern = "dd/MM/YY")
-    @Column
-    private Date createdAt;
+    private String createdById;
 
     @JsonFormat(pattern = "dd/MM/YY")
     @Column
     private Date expirationAt;
 
     public BudgetEntity(
-            String notes,
             BigDecimal increase,
-            BigDecimal discount,
-            ServiceEntity service,
             String code,
-            Integer createdBy
+            CustomerEntity customer,
+            EmployeeEntity employee,
+            ServiceEntity service,
+            BigDecimal discount,
+            String notes,
+            String createdById,
+            Date expirationAt
     ) {
         this.id = UUID.randomUUID().toString();
-        this.notes = notes;
         this.increase = increase;
-        this.discount = discount;
-        this.service = service;
-        this.createdAt = new Date();
         this.code = code;
-        this.createdBy = createdBy;
+        this.customer = customer;
+        this.employee = employee;
+        this.service = service;
+        this.discount = discount;
+        this.notes = notes;
+        this.createdById = createdById;
+        this.expirationAt = expirationAt;
     }
 
     @Override
