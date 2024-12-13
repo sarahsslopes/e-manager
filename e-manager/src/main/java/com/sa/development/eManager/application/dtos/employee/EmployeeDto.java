@@ -5,8 +5,7 @@ import com.sa.development.eManager.domain.ticket.entities.TicketEntity;
 
 import java.util.List;
 
-public class EmployeeDto {
-
-    private List<BudgetEntity> budgets;
-    private List<TicketEntity> tickets;
-}
+public record EmployeeDto(
+         List<BudgetEntity> budgets,
+         List<TicketEntity> tickets
+) {}
